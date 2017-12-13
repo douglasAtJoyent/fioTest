@@ -1,0 +1,25 @@
+; Test that will write a single file to an mounted drive.
+
+[global]
+filename_format=fio_write_$jobname_$jobnum_$filenum
+bs=4K
+;Priority 0=highest
+prio=0
+direct=0
+numjobs=1
+threads=${THREADS}
+time_based=1
+runtime=${TIME}
+;write_lat_log=./log/lat_mounted.log
+
+ioengine=libaio
+size=${SIZE}
+iodepth=1
+
+[write_single_network_disk]
+name=write_single_mounted_disk
+rw=randwrite
+time_based=1
+runtime=120
+write_bw_log=./log/${SIZE}_bandwidth_${TYPE}.log
+directory=${DIR}

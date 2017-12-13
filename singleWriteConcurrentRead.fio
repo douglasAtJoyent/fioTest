@@ -1,0 +1,34 @@
+;Test that will write a single file to an mounted drive.
+;THREADS=10 TIME=120 FILE_NUM=100 SIZE=100k DIR=/mnt/tempVolume/fioreaddir/ TYPE=network fio concurrentRead.fio
+
+[global]
+filename_format=fio_write_$jobname_$jobnum_$filenum
+bs=4K
+;Priority 0=highest
+prio=0
+direct=0
+numjobs=5
+threads=${THREADS}
+time_based=1
+runtime=${TIME}
+ioengine=libaio
+size=${SIZE}
+iodepth=1
+write_bw_log=./log/${SIZE}_bandwidth_${TYPE}.log
+
+[Read concurrent]
+name=readConcurrent
+rw=randread
+time_based=1
+nrfiles=${FILE_NUM}
+directory=${DIR}
+iodepth=50
+flow=1
+
+[write_single_network_disk]
+name=write_single_mounted_disk
+rw=randwrite
+time_based=1
+write_bw_log=./log/${SIZE}_bandwidth_${TYPE}.log
+directory=${DIR}
+flow=10
