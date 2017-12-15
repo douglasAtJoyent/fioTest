@@ -1,0 +1,17 @@
+[global]
+name=fio-rand-RW
+filename=fio-rand-RW
+rw=randrw
+bs=4K
+direct=0
+numjobs=4
+size=10G
+iodepth=16
+time_based=1
+runtime=60
+threads=100
+
+[onlyWrite]
+ioengine=libaio
+rwmixread=10
+rwmixwrite=90

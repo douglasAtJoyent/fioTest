@@ -2,33 +2,29 @@
 ;THREADS=10 TIME=120 FILE_NUM=100 SIZE=100k DIR=/mnt/tempVolume/fioreaddir/ TYPE=network fio concurrentRead.fio
 
 [global]
+time_based
 filename_format=fio_write_$jobname_$jobnum_$filenum
 bs=4K
 ;Priority 0=highest
 prio=0
 direct=0
-numjobs=5
-threads=${THREADS}
-time_based=1
 runtime=${TIME}
 ioengine=libaio
-size=${SIZE}
+filesize=${SIZE}
 iodepth=1
 write_bw_log=./log/${SIZE}_bandwidth_${TYPE}.log
+directory=${DIR}
 
-[Read concurrent]
-name=readConcurrent
+
+[write]
+numjobs=1
+rw=write
+flow=-1
+threads=1
+
+[read]
+numjobs=1
 rw=randread
-time_based=1
-nrfiles=${FILE_NUM}
-directory=${DIR}
-iodepth=50
-flow=1
+flow=8
+threads=8
 
-[write_single_network_disk]
-name=write_single_mounted_disk
-rw=randwrite
-time_based=1
-write_bw_log=./log/${SIZE}_bandwidth_${TYPE}.log
-directory=${DIR}
-flow=10
