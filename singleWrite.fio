@@ -20,6 +20,5 @@ iodepth=1
 name=write_single_mounted_disk
 rw=randwrite
 time_based=1
-runtime=120
 write_bw_log=./log/${SIZE}_bandwidth_${TYPE}.log
 directory=${DIR}
