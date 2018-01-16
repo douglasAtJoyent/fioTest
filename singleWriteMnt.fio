@@ -3,15 +3,16 @@
 [global]
 name=fio-rand-write
 filename=fio-rand-write
-directory=/mnt/tempVolume/
+directory=${DIR}
 rw=randwrite
 bs=4K
 direct=0
 numjobs=4
 time_based=1
-runtime=900
+runtime=${TIME}
+threads=${THREADS}
 
 [file1]
-size=10G
+size=${SIZE}
 ioengine=libaio
 iodepth=16
