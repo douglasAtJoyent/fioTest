@@ -22,7 +22,7 @@ The available tests are :
 - singleWriteMnt.fio
 
 To run a test run the command :
- docker run -it -v temp:/mnt/temp --env-file=env.sh douglasatjoyent/fiotest bash fio /fioTest/singleWrite.fio 
+ docker run -it -v temp:/mnt/temp --env-file=env.sh douglasatjoyent/fiotest fio /fioTest/singleWrite.fio 
 
 Note: this is specific for a network test, the -v will create and mount a volume.
 
