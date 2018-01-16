@@ -8,7 +8,6 @@ numjobs=4
 size=10G
 iodepth=16
 time_based=1
-runtime=60
 threads=100
 
 [onlyWrite]
