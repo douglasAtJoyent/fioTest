@@ -25,6 +25,6 @@ threads=1
 [read]
 numjobs=1
 rw=randread
-flow=8
-threads=8
+flow=${THREADS}
+threads=${THREADS}
 
